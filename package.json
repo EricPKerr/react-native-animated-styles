@@ -1,0 +1,28 @@
+{
+  "name": "react-native-animate-styles",
+  "version": "0.0.1",
+  "description": "Easily animate components between two styles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericpkerr/react-native-animate-styles.git"
+  },
+  "keywords": [
+    "react-native",
+    "animation",
+    "animate-styles",
+    "react",
+    "mobile",
+    "react-component",
+    "react-native-component"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ericpkerr/react-native-animate-styles/issues"
+  },
+  "homepage": "https://github.com/ericpkerr/react-native-animate-styles#readme"
+}
