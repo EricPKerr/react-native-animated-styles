@@ -1,6 +1,6 @@
 {
   "name": "react-native-animated-styles",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Easily animate components between two styles",
   "main": "index.js",
   "scripts": {
