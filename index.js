@@ -13,8 +13,8 @@ import flatten from 'react-native-animatable/flattenStyle'
 
 import tinycolor from 'tinycolor2';
 
-function createAnimateStyleComponent(WrappedComponent) {
-  class AnimateStyleComponent extends React.Component {
+function createComponent(WrappedComponent) {
+  class AnimateStylesComponent extends React.Component {
     constructor(props) {
       super(props);
 
@@ -81,15 +81,15 @@ function createAnimateStyleComponent(WrappedComponent) {
     }
   }
 
-  AnimateStyleComponent.defaultProps = {
+  AnimateStylesComponent.defaultProps = {
     duration: 200,
     animateInitial: false,
     active: false
   }
 
-  return AnimateStyleComponent;
+  return AnimateStylesComponent;
 }
 
-export const View = createAnimateStyleComponent(Animatable.View);
-export const Text = createAnimateStyleComponent(Animatable.Text);
-export const Image = createAnimateStyleComponent(Animatable.Image);
+export const View = createComponent(Animatable.View);
+export const Text = createComponent(Animatable.Text);
+export const Image = createComponent(Animatable.Image);
