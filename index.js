@@ -22,12 +22,11 @@ function createComponent(WrappedComponent) {
 
       this.state = {
         defaultStyle: this.getDefaultStyle(),
+        active: props.active,
         animatedValue: new Animated.Value(props.active && !props.animateInitial ? 1 : 0)
       }
 
       this.state.animatedStyle = this.getAnimatedStyle();
-
-      this.animation = null;
     }
 
     componentDidMount() {
@@ -35,7 +34,13 @@ function createComponent(WrappedComponent) {
     }
 
     componentWillReceiveProps(props) {
-      this.animate();
+      if(props.active != this.state.active) {
+        this.setState({
+          active: props.active
+        }, () => {
+          this.animate()
+        })
+      }
     }
 
     getDefaultStyle() {
@@ -85,12 +90,12 @@ function createComponent(WrappedComponent) {
     animate() {
       const { active, duration } = this.props;
 
-      if(this.animation && this.animation.stop) this.animation.stop();
-
-      this.animation = Animated.timing(this.state.animatedValue, {
-        toValue: active ? 1 : 0,
-        duration
-      }).start();
+      this.state.animatedValue.stopAnimation(() => {
+        Animated.timing(this.state.animatedValue, {
+          toValue: active ? 1 : 0,
+          duration
+        }).start();
+      })
     }
 
     render() {
