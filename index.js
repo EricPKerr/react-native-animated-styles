@@ -94,7 +94,7 @@ function createComponent(WrappedComponent) {
 
       return (
         <WrappedComponent ref="view" {...props} style={[
-          this.state.defaultStyle,
+          wrapStyleTransforms(this.state.defaultStyle),
           wrapStyleTransforms(this.state.animatedStyle)
         ]}>
           {this.props.children}
