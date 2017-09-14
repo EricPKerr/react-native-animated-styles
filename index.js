@@ -32,7 +32,7 @@ function createComponent(WrappedComponent) {
     }
 
     getDefaultStyle() {
-      let { style, active, animatedStyle, animateInitial } = this.props;
+      const { style, active, animatedStyle, animateInitial } = this.props;
 
       let styles = [style];
 
