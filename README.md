@@ -1,15 +1,15 @@
-# react-native-animate-styles
+# react-native-animated-styles
 
 Easily animate react-native components between two styles
 
 # Install
 
-`npm install --save react-native-animate-styles`
+`npm install --save react-native-animated-styles`
 
 # Usage
 
 ```
-import AnimateStyles from 'react-native-animate-styles'
+import * as AnimatedStyles from 'react-native-animated-styles'
 
 class MyComponent extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class MyComponent extends React.Component {
 
   render() {
     return (
-      <AnimateStyles.View
+      <AnimatedStyles.View
         style={styles.container}
         animatedStyle={styles.containerActive}
         active={this.state.active}
