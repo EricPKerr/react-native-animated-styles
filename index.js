@@ -9,7 +9,8 @@ import {
 
 import {
   flattenStyle,
-  getDefaultStyleValue
+  getDefaultStyleValue,
+  wrapStyleTransforms
 } from './utils';
 
 import tinycolor from 'tinycolor2';
@@ -92,7 +93,10 @@ function createComponent(WrappedComponent) {
       const {style, ref, ...props} = this.props;
 
       return (
-        <WrappedComponent ref="view" {...props} style={[this.state.defaultStyle, this.state.animatedStyle]}>
+        <WrappedComponent ref="view" {...props} style={[
+          this.state.defaultStyle,
+          wrapStyleTransforms(this.state.animatedStyle)
+        ]}>
           {this.props.children}
         </WrappedComponent>
       );
