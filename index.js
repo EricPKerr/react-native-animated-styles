@@ -3,13 +3,14 @@
 import React from 'react';
 
 import {
-  StyleSheet
+  StyleSheet,
+  Animated
 } from 'react-native';
 
-import * as Animatable from 'react-native-animatable';
-
-import getDefaultStyleValue from 'react-native-animatable/getDefaultStyleValue';
-import flatten from 'react-native-animatable/flattenStyle'
+import {
+  flattenStyle,
+  getDefaultStyleValue
+} from './utils';
 
 import tinycolor from 'tinycolor2';
 
@@ -19,8 +20,11 @@ function createComponent(WrappedComponent) {
       super(props);
 
       this.state = {
-        defaultStyle: this.getDefaultStyle()
+        defaultStyle: this.getDefaultStyle(),
+        animatedValue: new Animated.Value(props.active && !props.animateInitial ? 1 : 0)
       }
+
+      this.state.animatedStyle = this.getAnimatedStyle();
     }
 
     componentDidMount() {
@@ -38,7 +42,35 @@ function createComponent(WrappedComponent) {
 
       if(active && !animateInitial) styles.push(animatedStyle);
 
-      return Object.assign({}, flatten(styles));
+      return Object.assign({}, flattenStyle(styles));
+    }
+
+    getAnimatedStyle() {
+      const { style, animatedStyle } = this.props;
+
+      const start = flattenStyle(style),
+        finish = flattenStyle(animatedStyle);
+
+      let styles = {};
+
+      Object.keys(finish).forEach(key => {
+        styles[key] = this.state.animatedValue.interpolate({
+          inputRange: [0, 1],
+          outputRange: this.getOutputRange(key, start, finish)
+        })
+      });
+
+      return styles;
+    }
+
+    getOutputRange(key, start, finish) {
+      start = start.hasOwnProperty(key) ? start[key] : getDefaultStyleValue(key, start);
+      finish = finish[key]
+
+      return [
+        this.formatValue(key, start),
+        this.formatValue(key, finish)
+      ]
     }
 
     formatValue(key, value) {
@@ -47,34 +79,20 @@ function createComponent(WrappedComponent) {
       return color.toRgbString()
     }
 
-    animate(props) {
-      const { style, animatedStyle, duration, active } = this.props;
+    animate() {
+      const { active, duration } = this.props;
 
-      const animateKeys = Object.keys(flatten(animatedStyle));
-      const flattened = flatten(active ? animatedStyle : style);
-
-      let animateTo = {};
-      Object.keys(flattened).forEach(key => {
-        const value = flattened[key];
-        if(animateKeys.indexOf(key) >= 0) {
-          animateTo[key] = this.formatValue(key, value);
-        }
-      })
-
-      animateKeys.forEach(key => {
-        if(!animateTo.hasOwnProperty(key)) {
-          animateTo[key] = getDefaultStyleValue(key, flattened);
-        }
-      })
-
-      this.refs.view.transitionTo(animateTo, duration);
+      Animated.timing(this.state.animatedValue, {
+        toValue: active ? 1 : 0,
+        duration
+      }).start();
     }
 
     render() {
       const {style, ref, ...props} = this.props;
 
       return (
-        <WrappedComponent ref="view" {...props} style={this.state.defaultStyle}>
+        <WrappedComponent ref="view" {...props} style={[this.state.defaultStyle, this.state.animatedStyle]}>
           {this.props.children}
         </WrappedComponent>
       );
@@ -82,7 +100,7 @@ function createComponent(WrappedComponent) {
   }
 
   AnimatedStylesComponent.defaultProps = {
-    duration: 200,
+    duration: 500,
     animateInitial: false,
     active: false
   }
@@ -90,6 +108,6 @@ function createComponent(WrappedComponent) {
   return AnimatedStylesComponent;
 }
 
-export const View = createComponent(Animatable.View);
-export const Text = createComponent(Animatable.Text);
-export const Image = createComponent(Animatable.Image);
+export const View = createComponent(Animated.View);
+export const Text = createComponent(Animated.Text);
+export const Image = createComponent(Animated.Image);
