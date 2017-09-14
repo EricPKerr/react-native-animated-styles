@@ -26,6 +26,8 @@ function createComponent(WrappedComponent) {
       }
 
       this.state.animatedStyle = this.getAnimatedStyle();
+
+      this.animation = null;
     }
 
     componentDidMount() {
@@ -83,7 +85,9 @@ function createComponent(WrappedComponent) {
     animate() {
       const { active, duration } = this.props;
 
-      Animated.timing(this.state.animatedValue, {
+      if(this.animation && this.animation.stop) this.animation.stop();
+
+      this.animation = Animated.timing(this.state.animatedValue, {
         toValue: active ? 1 : 0,
         duration
       }).start();
