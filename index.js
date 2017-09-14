@@ -24,11 +24,11 @@ function createComponent(WrappedComponent) {
     }
 
     componentDidMount() {
-      if(this.props.animateInitial) this.animate(this.props);
+      if(this.props.animateInitial) this.animate();
     }
 
     componentWillReceiveProps(props) {
-      this.animate(props);
+      this.animate();
     }
 
     getDefaultStyle() {
@@ -48,7 +48,7 @@ function createComponent(WrappedComponent) {
     }
 
     animate(props) {
-      const { style, animatedStyle, duration, active } = props;
+      const { style, animatedStyle, duration, active } = this.props;
 
       const animateKeys = Object.keys(flatten(animatedStyle));
       const flattened = flatten(active ? animatedStyle : style);
