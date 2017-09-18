@@ -88,11 +88,12 @@ function createComponent(WrappedComponent) {
     }
 
     animate() {
-      const { active, duration } = this.props;
+      const { active, useNativeDriver, duration } = this.props;
 
       this.state.animatedValue.stopAnimation(() => {
         Animated.timing(this.state.animatedValue, {
           toValue: active ? 1 : 0,
+          useNativeDriver,
           duration
         }).start();
       });
@@ -115,7 +116,8 @@ function createComponent(WrappedComponent) {
   AnimatedStylesComponent.defaultProps = {
     duration: 500,
     animateInitial: false,
-    active: false
+    active: false,
+    useNativeDriver: false
   }
 
   return AnimatedStylesComponent;
