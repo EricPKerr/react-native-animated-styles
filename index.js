@@ -10,7 +10,7 @@ import {
 import {
   flattenStyle,
   getDefaultStyleValue,
-  wrapStyleTransforms
+  wrapTransforms
 } from './utils';
 
 import tinycolor from 'tinycolor2';
@@ -38,7 +38,7 @@ function createComponent(WrappedComponent) {
         this.setState({
           active: props.active
         }, () => {
-          this.animate()
+          this.animate();
         })
       }
     }
@@ -73,7 +73,7 @@ function createComponent(WrappedComponent) {
 
     getOutputRange(key, start, finish) {
       start = start.hasOwnProperty(key) ? start[key] : getDefaultStyleValue(key, start);
-      finish = finish[key]
+      finish = finish[key];
 
       return [
         this.formatValue(key, start),
@@ -84,7 +84,7 @@ function createComponent(WrappedComponent) {
     formatValue(key, value) {
       if(key.toLowerCase().indexOf('color') < 0) return value;
       const color = tinycolor(value);
-      return color.toRgbString()
+      return color.toRgbString();
     }
 
     animate() {
@@ -95,7 +95,7 @@ function createComponent(WrappedComponent) {
           toValue: active ? 1 : 0,
           duration
         }).start();
-      })
+      });
     }
 
     render() {
@@ -103,8 +103,8 @@ function createComponent(WrappedComponent) {
 
       return (
         <WrappedComponent ref="view" {...props} style={[
-          wrapStyleTransforms(this.state.defaultStyle),
-          wrapStyleTransforms(this.state.animatedStyle)
+          wrapTransforms(this.state.defaultStyle),
+          wrapTransforms(this.state.animatedStyle)
         ]}>
           {this.props.children}
         </WrappedComponent>

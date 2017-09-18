@@ -75,8 +75,8 @@ const TRANSFORM_STYLE_PROPERTIES = [
 ];
 
 // Transforms { translateX: 1 } to { transform: [{ translateX: 1 }]}
-export function wrapStyleTransforms(style) {
-  const wrapped = {};
+export function wrapTransforms(style) {
+  let wrapped = {};
   Object.keys(style).forEach(key => {
     if (TRANSFORM_STYLE_PROPERTIES.indexOf(key) !== -1) {
       if (!wrapped.transform) {
