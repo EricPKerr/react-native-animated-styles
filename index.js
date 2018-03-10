@@ -1,10 +1,12 @@
 'use strict';
 
-import React from 'react';
+import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   StyleSheet,
-  Animated
+  Animated,
+  ViewPropTypes
 } from 'react-native';
 
 import {
@@ -16,7 +18,23 @@ import {
 import tinycolor from 'tinycolor2';
 
 function createComponent(WrappedComponent) {
-  class AnimatedStylesComponent extends React.Component {
+  class AnimatedStylesComponent extends PureComponent {
+    static propTypes = {
+      style: ViewPropTypes.style,
+      animatedStyle: ViewPropTypes.style,
+      duration: PropTypes.number,
+      animateInitial: PropTypes.bool,
+      active: PropTypes.bool,
+      useNativeDriver: PropTypes.bool
+    };
+
+    static defaultProps = {
+      duration: 500,
+      animateInitial: false,
+      active: false,
+      useNativeDriver: false
+    };
+
     constructor(props) {
       super(props);
 

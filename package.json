@@ -1,6 +1,6 @@
 {
   "name": "react-native-animated-styles",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Easily animate components between two styles",
   "main": "index.js",
   "scripts": {
@@ -29,19 +29,19 @@
   },
   "homepage": "https://github.com/ericpkerr/react-native-animated-styles#readme",
   "devDependencies": {
-    "babel": "^6.5.2",
-    "babel-eslint": "^7.0.0",
-    "babel-jest": "^20.0.3",
-    "babel-preset-react-native": "^1.9.0",
-    "jest": "20.0.4",
-    "jest-cli": "20.0.4",
+    "babel": "^6.23.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.1",
+    "babel-preset-react-native": "^4.0.0",
+    "jest": "22.4.2",
+    "jest-cli": "22.4.2",
     "jest-react-native": "18.0.0",
     "react": "*",
     "react-native": "*",
-    "react-test-renderer": "15.5.4"
+    "react-test-renderer": "16.2.0"
   },
   "dependencies": {
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.6.1",
     "tinycolor2": "^1.4.1"
   }
 }
