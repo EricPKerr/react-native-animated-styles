@@ -131,13 +131,6 @@ function createComponent(WrappedComponent) {
     }
   }
 
-  AnimatedStylesComponent.defaultProps = {
-    duration: 500,
-    animateInitial: false,
-    active: false,
-    useNativeDriver: false
-  }
-
   return AnimatedStylesComponent;
 }
 
