@@ -118,14 +118,15 @@ function createComponent(WrappedComponent) {
     }
 
     render() {
-      const {style, ref, ...props} = this.props;
+      const { style, ref, children, ...props } = this.props;
+      const { defaultStyle, animatedStyle } = this.state;
 
       return (
         <WrappedComponent ref="view" {...props} style={[
-          wrapTransforms(this.state.defaultStyle),
-          wrapTransforms(this.state.animatedStyle)
+          wrapTransforms(defaultStyle),
+          wrapTransforms(animatedStyle)
         ]}>
-          {this.props.children}
+          {children}
         </WrappedComponent>
       );
     }
@@ -134,6 +135,8 @@ function createComponent(WrappedComponent) {
   return AnimatedStylesComponent;
 }
 
-export const View = createComponent(Animated.View);
-export const Text = createComponent(Animated.Text);
-export const Image = createComponent(Animated.Image);
+export default {
+  View: createComponent(Animated.View),
+  Text: createComponent(Animated.Text),
+  Image: createComponent(Animated.Image)
+}

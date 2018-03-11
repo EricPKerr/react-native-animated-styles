@@ -1,15 +1,28 @@
 # react-native-animated-styles
 
-Easily animate react-native components between two styles
+Easily animate react-native components between two styles.  Similar concept to adding and removing a CSS class to animate HTML Elements for the web.
 
 # Install
 
 `npm install --save react-native-animated-styles`
 
-# Usage
+# Properties
 
 ```
-import * as AnimatedStyles from 'react-native-animated-styles'
+<AnimatedStyles.View/Text/Image
+  style={}           // Default Element Style
+  animatedStyle={}   // Animated Element Style (what the element animates to)
+  active={}          // Whether the animated state is active
+  duration={}        // Animation Duration
+  animateInitial={}  // Whether component should initially animate if it's currently active
+  useNativeDriver={} // Use native driver for performance
+/>
+```
+
+# Example Usage
+
+```
+import AnimatedStyles from 'react-native-animated-styles'
 
 class MyComponent extends React.Component {
   constructor(props) {
