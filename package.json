@@ -30,15 +30,15 @@
   "homepage": "https://github.com/ericpkerr/react-native-animated-styles#readme",
   "devDependencies": {
     "babel": "^6.23.0",
-    "babel-eslint": "^10.0.2",
-    "babel-jest": "^24.8.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "babel-preset-react-native": "^4.0.1",
-    "jest": "24.8.0",
-    "jest-cli": "24.8.0",
+    "jest": "24.9.0",
+    "jest-cli": "24.9.0",
     "jest-react-native": "18.0.0",
     "react": "*",
     "react-native": "*",
-    "react-test-renderer": "16.8.6"
+    "react-test-renderer": "16.12.0"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
