@@ -22,52 +22,53 @@ Easily animate react-native components between two styles.  Similar concept to a
 # Example Usage
 
 ```
-import AnimatedStyles from 'react-native-animated-styles'
+import AnimatedStyles from 'react-native-animated-styles';
+import { useEffect, useState } from 'react';
 
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
+const MyComponent = () => {
+  const [ active, setActive ] = useState(true);
 
-    this.state = {
-      active: true
-    }
-  }
+  useEffect(() => {
+    setInterval(() => {
+      setActive((active) => !active);
+    }, 3000);
+  }, []);
 
-  componentDidMount() {
-    this.interval = setInterval(() => {
-      this.setState({
-        active: !this.state.active
-      })
-    }, 3000)
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  render() {
-    return (
+  return (
+    <View style={styles.wrap}>
       <AnimatedStyles.View
-        style={styles.container}
-        animatedStyle={styles.containerActive}
-        active={this.state.active}
+        style={styles.box}
+        animatedStyle={styles.boxActive}
+        active={active}
       />
-    )
-  }
-}
+    </View>
+  )
+};
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'red',
-    width: 50,
-    height: 50,
-    marginLeft: 10
+  wrap: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
-  containerActive: {
+  box: {
+
+    backgroundColor: 'rgb(73, 0, 9)', // normalizes colors
+    width: 80,
+    height: 80
+  },
+
+  boxActive: {
     width: 100,
     height: 100,
-    backgroundColor: 'green'
+    backgroundColor: '#AC0E28',
+    transform: [
+      { rotate: '45deg' } // uses default values for transform properties
+    ]
   }
-})
+});
 ```
+
+![Example](https://user-images.githubusercontent.com/20335/102654988-2255ff00-4137-11eb-8bd7-5f132638ae67.gif)
+

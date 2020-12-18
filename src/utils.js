@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export function flattenStyle(style) {
+export const flattenStyle = (style) => {
   const flatStyle = Object.assign({}, StyleSheet.flatten(style));
   if (flatStyle.transform) {
     flatStyle.transform.forEach(transform => {
@@ -23,7 +23,7 @@ const DIRECTIONAL_FALLBACKS = {
 
 const DIRECTIONAL_SUFFICES = Object.keys(DIRECTIONAL_FALLBACKS);
 
-export function getDefaultStyleValue(key, flatStyle) {
+export const getDefaultStyleValue = (key, flatStyle) => {
   if (key === 'backgroundColor') {
     return 'rgba(0,0,0,0)';
   }
@@ -75,7 +75,7 @@ const TRANSFORM_STYLE_PROPERTIES = [
 ];
 
 // Transforms { translateX: 1 } to { transform: [{ translateX: 1 }]}
-export function wrapTransforms(style) {
+export const wrapTransforms = (style) => {
   let wrapped = {};
   Object.keys(style).forEach(key => {
     if (TRANSFORM_STYLE_PROPERTIES.indexOf(key) !== -1) {
