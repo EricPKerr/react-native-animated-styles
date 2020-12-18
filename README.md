@@ -69,5 +69,5 @@ const styles = StyleSheet.create({
 });
 ```
 
-![Example](https://github.com/EricPKerr/react-native-animated-styles/blob/master/Example.gif?raw=true | width=400)
+![Example](https://github.com/EricPKerr/react-native-animated-styles/blob/master/Example.gif?raw=true)
 
