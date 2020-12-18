@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
   },
 
   box: {
-
     backgroundColor: 'rgb(73, 0, 9)', // normalizes colors
     width: 80,
     height: 80
@@ -70,5 +69,5 @@ const styles = StyleSheet.create({
 });
 ```
 
-![Example](https://user-images.githubusercontent.com/20335/102654988-2255ff00-4137-11eb-8bd7-5f132638ae67.gif)
+![Example](https://github.com/EricPKerr/react-native-animated-styles/blob/master/Example.gif?raw=true)
 
