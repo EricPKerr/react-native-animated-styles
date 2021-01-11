@@ -4,7 +4,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  StyleSheet,
   Animated,
   ViewPropTypes
 } from 'react-native';
@@ -51,14 +50,26 @@ function createComponent(WrappedComponent) {
       if(this.props.animateInitial) this.animate();
     }
 
-    componentWillReceiveProps(props) {
-      if(props.active != this.state.active) {
+    componentDidUpdate(previousProps) {
+      if ((previousProps.style !== this.props.style) || 
+          (previousProps.animatedStyle !== this.props.animatedStyle) || 
+          (previousProps.animateInitial !== this.props.animateInitial)
+      ){
+        this.setState({ defaultStyle: this.getDefaultStyle() })
+      }
+
+      if ((previousProps.style !== this.props.style) || (previousProps.animatedStyle !== this.props.animatedStyle) ){
+        this.setState({ animatedStyle: this.getAnimatedStyle() })
+      }
+      
+      if (this.props.active != this.state.active) {
         this.setState({
-          active: props.active
+          active: this.props.active
         }, () => {
           this.animate();
         })
       }
+
     }
 
     getDefaultStyle() {
